@@ -31,7 +31,7 @@ def is_bitlink(token, url):
 
 def main():
     load_dotenv()
-    token = os.environ['TOKEN']
+    token = os.environ['BITLY_TOKEN']
     user_input = input('Введите ссылку: ')
     if is_bitlink(token, user_input):
         try:
