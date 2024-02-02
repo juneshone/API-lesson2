@@ -3,9 +3,7 @@ from urllib.parse import urlparse
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
 
-token = os.environ['TOKEN']
 
 def shorten_link(token, url):
     url_bitly = 'https://api-ssl.bitly.com/v4/bitlinks'
@@ -32,6 +30,8 @@ def is_bitlink(token, url):
     return response.ok
 
 def main():
+    load_dotenv()
+    token = os.environ['TOKEN']
     user_input = input('Введите ссылку: ')
     if is_bitlink(token, user_input):
         try:
@@ -49,4 +49,5 @@ def main():
 if __name__ == '__main__':
     main()
 
+# https://bit.ly/42reuxz
 
