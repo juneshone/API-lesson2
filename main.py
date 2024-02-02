@@ -40,16 +40,16 @@ def main():
     user_input = input('Введите ссылку: ')
     if is_bitlink(token, user_input):
         try:
-            count_clicks(token, user_input)
+            clicks_count = count_clicks(token, user_input)
+            print('Количество кликов по ссылке за все дни', clicks_count)
         except requests.exceptions.HTTPError:
             print('Вы ввели неверную ссылку')
-        print('Количество кликов по ссылке за все дни', count_clicks(token, user_input))
     else:
         try:
-            shorten_link(token, user_input)
+            bitlink = shorten_link(token, user_input)
+            print('Битлинк', bitlink)
         except requests.exceptions.HTTPError:
-            print('Вы ввели неверную ссылку!')  # если ошибка
-        print('Битлинк', shorten_link(token, user_input))  # если все впорядке
+            print('Вы ввели неверную ссылку!')
 
 
 if __name__ == '__main__':
