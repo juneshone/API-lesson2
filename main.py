@@ -6,27 +6,27 @@ import os
 
 
 def shorten_link(token, url):
-    url_bitly = 'https://api-ssl.bitly.com/v4/bitlinks'
+    bitly_url = 'https://api-ssl.bitly.com/v4/bitlinks'
     data = {"long_url": url}
-    response = requests.post(url_bitly, json=data,  headers={'Authorization': token})
+    response = requests.post(bitly_url, json=data,  headers={'Authorization': token})
     response.raise_for_status()
     bitlink = response.json().get('link')
     return bitlink
 
 def count_clicks(token, link):
-    link_parse = urlparse(link)
-    link = f'{link_parse.netloc}{link_parse.path}'
-    url_bitly1 = f'https://api-ssl.bitly.com/v4/bitlinks/{link}/clicks/summary'
-    response = requests.get(url_bitly1, headers={'Authorization': token})
+    parsed = urlparse(link)
+    link = f'{parsed.netloc}{parsed.path}'
+    bitly_url = f'https://api-ssl.bitly.com/v4/bitlinks/{link}/clicks/summary'
+    response = requests.get(bitly_url, headers={'Authorization': token})
     response.raise_for_status()
     clicks_count = response.json().get('total_clicks')
     return clicks_count
 
 def is_bitlink(token, url):
-    link_parse = urlparse(url)
-    link = f'{link_parse.netloc}{link_parse.path}'
-    url_bitly2 = f'https://api-ssl.bitly.com/v4/bitlinks/{link}'
-    response = requests.get(url_bitly2, headers={'Authorization': token})
+    parsed = urlparse(url)
+    link = f'{parsed.netloc}{parsed.path}'
+    bitly_url = f'https://api-ssl.bitly.com/v4/bitlinks/{link}'
+    response = requests.get(bitly_url, headers={'Authorization': token})
     return response.ok
 
 def main():
