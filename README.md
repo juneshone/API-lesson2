@@ -17,28 +17,43 @@ pip install -r requirements.txt
 ```
 ### Пример запуска скрипта
 
-Убедитесь, что в терминале находитесь в директории `API-lesson2` и запустите скрипт командой
+Убедитесь, что в терминале находитесь в директории `API-lesson2` и ознакомьтесь со справкой по программе, используя команду:
 ```
-python main.py
+python main.py -h
+```
+_Пример:_
+
+```
+(venv) PS C:\Users\user\Desktop\API-lesson2> python main.py -h     
+usage: main.py [-h] user_input
+
+Консольная утилита, которая сокращает ссылки, делая запрос к API сервиса Bitly.
+Также считает переходы по сокращенным ссылкам.
+
+positional arguments:
+  user_input  Ваша ссылка
+
+options:
+  -h, --help  show this help message and exit
 ```
 
-Введите в консоль адрес сайта в интернете, который будете сокращать. На выходе получите сокращенную ссылку.
-```
-https://dzen.ru/?yredirect=true&clid=2270456&win=539
-```
+Ссылка пользователя используется в качестве позиционного аргумента. При вводе длинной ссылки на выходе получите сокращенную ссылку(битлинк).
 
 _Пример:_
 
-![Битлинк](https://github.com/juneshone/API-lesson2/assets/122731315/72434214-d386-4b2e-98e5-f6228a882729)
+```
+(venv) PS C:\Users\user\Desktop\API-lesson2> python main.py 'https://dzen.ru/?yredirect=true&clid=2270456&win=539'
+Битлинк https://bit.ly/42reuxz
+```
 
-Для получения кликов по ссылке введите в консоль сокращенную ссылку.
-```
-https://bit.ly/42reuxz
-```
+Для получения кликов по ссылке введите в качестве позиционного аргумента сокращенную ссылку.
 
 _Пример:_
 
-![Клики](https://github.com/juneshone/API-lesson2/assets/122731315/9f67ee8e-6f88-47ea-99de-16d6338517b5)
+```
+(venv) PS C:\Users\user\Desktop\API-lesson2> python main.py https://bit.ly/42reuxz
+Количество кликов по ссылке за все дни 3
+```
 
 ### Цель проекта
 

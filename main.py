@@ -2,7 +2,12 @@ import requests
 from urllib.parse import urlparse
 from dotenv import load_dotenv
 import os
+import argparse
 
+description = '''
+Консольная утилита, которая сокращает ссылки, делая запрос к API сервиса Bitly.
+Также считает переходы по сокращенным ссылкам.
+'''
 
 def shorten_link(token, url):
     bitly_url = 'https://api-ssl.bitly.com/v4/bitlinks'
@@ -37,7 +42,10 @@ def is_bitlink(token, url):
 def main():
     load_dotenv()
     token = os.environ['BITLY_TOKEN']
-    user_input = input('Введите ссылку: ')
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('user_input', help='Ваша ссылка')
+    args = parser.parse_args()
+    user_input = args.user_input
     if is_bitlink(token, user_input):
         try:
             clicks_count = count_clicks(token, user_input)
