@@ -47,11 +47,8 @@ def main():
     args = parser.parse_args()
     user_input = args.user_input
     if is_bitlink(token, user_input):
-        try:
-            clicks_count = count_clicks(token, user_input)
-            print('Количество кликов по ссылке за все дни', clicks_count)
-        except requests.exceptions.HTTPError:
-            print('Вы ввели неверную ссылку')
+        clicks_count = count_clicks(token, user_input)
+        print('Количество кликов по ссылке за все дни', clicks_count)
     else:
         try:
             bitlink = shorten_link(token, user_input)
